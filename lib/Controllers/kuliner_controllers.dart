@@ -158,3 +158,86 @@ final List<Kuliner> listKuliner = [
     gambar_kuliner: 'Assets/Kuliner/bebeksinjay.png',
   ),
 ];
+
+/// Controller filter untuk daftar kuliner.
+/// Menyimpan state pencarian/daerah/kategori dan menyediakan hasil yang sudah difilter.
+class KulinerController extends ChangeNotifier {
+  String _search = '';
+  String _daerah = 'Semua Daerah';
+  String _kategori = 'Semua Kategori';
+
+  String get searchQuery => _search;
+  String get selectedDaerahKuliner => _daerah;
+  String get selectedKategoriKuliner => _kategori;
+
+  /// Opsi dropdown daerah, diambil otomatis dari data lokasi.
+  List<String> get opsiDaerah {
+    final daerah = <String>{'Semua Daerah'};
+    for (final kuliner in listKuliner) {
+      daerah.add(_daerahDariLokasi(kuliner.lokasi_kuliner));
+    }
+    return daerah.toList();
+  }
+
+  /// Opsi dropdown kategori, diambil otomatis dari data kategori.
+  List<String> get opsiKategori {
+    final kategori = <String>{'Semua Kategori'};
+    for (final kuliner in listKuliner) {
+      kategori.add(kuliner.kategori_kuliner);
+    }
+    return kategori.toList();
+  }
+
+  /// Daftar kuliner yang sudah difilter berdasarkan pencarian, daerah, dan kategori.
+  List<Kuliner> get daftarKuliner {
+    final kataKunci = _search.toLowerCase();
+    return listKuliner.where((kuliner) {
+      final cocokPencarian = kataKunci.isEmpty ||
+          kuliner.nama_kuliner.toLowerCase().contains(kataKunci) ||
+          kuliner.lokasi_kuliner.toLowerCase().contains(kataKunci);
+      final cocokDaerah = _daerah == 'Semua Daerah' ||
+          kuliner.lokasi_kuliner.toLowerCase().contains(_daerah.toLowerCase());
+      final cocokKategori = _kategori == 'Semua Kategori' ||
+          kuliner.kategori_kuliner.toLowerCase().contains(_kategori.toLowerCase());
+      return cocokPencarian && cocokDaerah && cocokKategori;
+    }).toList();
+  }
+
+  void filterKulinerSearch(String val) {
+    _search = val;
+    notifyListeners();
+  }
+
+  void filterKulinerDaerah(String? val) {
+    _daerah = (val == null || val.isEmpty) ? 'Semua Daerah' : val;
+    notifyListeners();
+  }
+
+  void filterKulinerKategori(String? val) {
+    _kategori = (val == null || val.isEmpty) ? 'Semua Kategori' : val;
+    notifyListeners();
+  }
+
+  void resetFilterKuliner() {
+    _search = '';
+    _daerah = 'Semua Daerah';
+    _kategori = 'Semua Kategori';
+    notifyListeners();
+  }
+
+  static String _daerahDariLokasi(String lokasi) {
+    const wilayah = [
+      'Surabaya Pusat',
+      'Surabaya Utara',
+      'Surabaya Timur',
+      'Surabaya Barat',
+      'Surabaya Selatan',
+    ];
+    final lokasiLower = lokasi.toLowerCase();
+    for (final daerah in wilayah) {
+      if (lokasiLower.contains(daerah.toLowerCase())) return daerah;
+    }
+    final bagian = lokasi.split(',').last.trim();
+    return bagian.isEmpty ? lokasi : bagian;
+  }
+}

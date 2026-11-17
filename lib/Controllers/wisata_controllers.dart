@@ -61,7 +61,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Wisata Bahari',
     harga_tiket: 10000,
     deskripsi_wisata: 'Destinasi rooftop di Pelabuhan Tanjung Perak dengan pemandangan aktivitas kapal laut. Spot terbaik untuk menikmati matahari terbenam (sunset).',
-    gambar_wisata: '', // belum ada file gambar khusus untuk North Quay
+    gambar_wisata: 'Assets/Wisata/SurabayaNorthQuay.jpg',
   ),
   Wisata(
     nama_wisata: 'Kota Tua Surabaya',
@@ -147,7 +147,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Kebun Binatang / Edukasi',
     harga_tiket: 15000,
     deskripsi_wisata: 'Destinasi rekreasi satwa ikonik di jantung Surabaya Selatan. Areanya luas dan memiliki banyak koleksi fauna serta edukasi alam yang lengkap.',
-    gambar_wisata: 'Assets/Wisata/KebunBinatangSurabaya.jgpg',
+    gambar_wisata: 'Assets/Wisata/KebunBinatangSurabaya.jpg',
   ),
   Wisata(
     nama_wisata: 'Taman Korea Surabaya',
@@ -158,3 +158,86 @@ final List<Wisata> listWisata = [
     gambar_wisata: 'Assets/Wisata/TamanKorea.jpeg',
   ),
 ];
+
+/// Controller filter untuk daftar destinasi wisata.
+/// Menyimpan state pencarian/daerah/kategori dan menyediakan hasil yang sudah difilter.
+class WisataController extends ChangeNotifier {
+  String _search = '';
+  String _daerah = 'Semua Daerah';
+  String _kategori = 'Semua Kategori';
+
+  String get searchQuery => _search;
+  String get selectedDaerahDestinasi => _daerah;
+  String get selectedKategoriDestinasi => _kategori;
+
+  /// Opsi dropdown daerah, diambil otomatis dari data lokasi.
+  List<String> get opsiDaerah {
+    final daerah = <String>{'Semua Daerah'};
+    for (final wisata in listWisata) {
+      daerah.add(_daerahDariLokasi(wisata.lokasi_wisata));
+    }
+    return daerah.toList();
+  }
+
+  /// Opsi dropdown kategori, diambil otomatis dari data kategori.
+  List<String> get opsiKategori {
+    final kategori = <String>{'Semua Kategori'};
+    for (final wisata in listWisata) {
+      kategori.add(wisata.kategori_wisata);
+    }
+    return kategori.toList();
+  }
+
+  /// Daftar destinasi yang sudah difilter berdasarkan pencarian, daerah, dan kategori.
+  List<Wisata> get daftarDestinasi {
+    final kataKunci = _search.toLowerCase();
+    return listWisata.where((wisata) {
+      final cocokPencarian = kataKunci.isEmpty ||
+          wisata.nama_wisata.toLowerCase().contains(kataKunci) ||
+          wisata.lokasi_wisata.toLowerCase().contains(kataKunci);
+      final cocokDaerah = _daerah == 'Semua Daerah' ||
+          wisata.lokasi_wisata.toLowerCase().contains(_daerah.toLowerCase());
+      final cocokKategori = _kategori == 'Semua Kategori' ||
+          wisata.kategori_wisata.toLowerCase().contains(_kategori.toLowerCase());
+      return cocokPencarian && cocokDaerah && cocokKategori;
+    }).toList();
+  }
+
+  void filterDestinasiSearch(String val) {
+    _search = val;
+    notifyListeners();
+  }
+
+  void filterDestinasiDaerah(String? val) {
+    _daerah = (val == null || val.isEmpty) ? 'Semua Daerah' : val;
+    notifyListeners();
+  }
+
+  void filterDestinasiKategori(String? val) {
+    _kategori = (val == null || val.isEmpty) ? 'Semua Kategori' : val;
+    notifyListeners();
+  }
+
+  void resetFilterDestinasi() {
+    _search = '';
+    _daerah = 'Semua Daerah';
+    _kategori = 'Semua Kategori';
+    notifyListeners();
+  }
+
+  static String _daerahDariLokasi(String lokasi) {
+    const wilayah = [
+      'Surabaya Pusat',
+      'Surabaya Utara',
+      'Surabaya Timur',
+      'Surabaya Barat',
+      'Surabaya Selatan',
+    ];
+    final lokasiLower = lokasi.toLowerCase();
+    for (final daerah in wilayah) {
+      if (lokasiLower.contains(daerah.toLowerCase())) return daerah;
+    }
+    final bagian = lokasi.split(',').last.trim();
+    return bagian.isEmpty ? lokasi : bagian;
+  }
+}
