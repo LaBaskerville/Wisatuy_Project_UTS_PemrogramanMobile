@@ -1,6 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:wisatuy/Models/wisata_model.dart';
 
+/// Wrapper agar objek Wisata bisa dibaca dengan .nama, .lokasi, .imageUrl oleh DashboardView
+class WisataDashboardItem {
+  final Wisata data;
+  WisataDashboardItem(this.data);
+
+  String get nama => data.nama_wisata;
+  String get lokasi => data.lokasi_wisata;
+  String get deskripsi => data.deskripsi_wisata;
+  String get kategori => data.kategori_wisata;
+  int get hargaTiket => data.harga_tiket;
+  String get imageUrl => data.gambar_wisata;
+}
+
+/// Wrapper agar objek Kuliner bisa dibaca dengan .nama, .lokasi, .imageUrl oleh DashboardView
+class KulinerDashboardItem {
+  final Kuliner data;
+  KulinerDashboardItem(this.data);
+
+  String get nama => data.nama_kuliner;
+  String get lokasi => data.lokasi_kuliner;
+  String get deskripsi => data.deskripsi_kuliner;
+  String get kategori => data.kategori_kuliner;
+  String get rentangHarga => data.rentang_harga;
+  String get imageUrl => data.gambar_kuliner;
+}
+
 final List<Kuliner> listKuliner = [
   // --- SURABAYA PUSAT ---
   Kuliner(
