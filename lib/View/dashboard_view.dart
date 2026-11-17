@@ -9,152 +9,176 @@ class DashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     const primaryGreen = Color(0xFF005E4D);
 
-    return Scaffold(
-      backgroundColor: const Color(0xFFF7F9F8),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header Hijau khas WISATUY
-              Container(
-                color: primaryGreen,
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
+    // Menggunakan ListenableBuilder agar UI otomatis ter-update saat controller memanggil notifyListeners()
+    return ListenableBuilder(
+      listenable: controller,
+      builder: (context, child) {
+        return Scaffold(
+          backgroundColor: const Color(0xFFF7F9F8),
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Header Hijau khas WISATUY
+                  Container(
+                    color: primaryGreen,
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Icon(Icons.diamond, color: Colors.white, size: 28),
-                        const SizedBox(width: 8),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text(
-                              'WISATUY',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 20,
-                                letterSpacing: 1,
-                              ),
+                        Row(
+                          children: [
+                            const Icon(Icons.diamond, color: Colors.white, size: 28),
+                            const SizedBox(width: 8),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text(
+                                  'WISATUY',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                    letterSpacing: 1,
+                                  ),
+                                ),
+                                Text(
+                                  'SURABAYA',
+                                  style: TextStyle(
+                                    color: Colors.white70,
+                                    fontSize: 10,
+                                    letterSpacing: 1.5,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                        const SizedBox(height: 16),
+                        TextField(
+                          onChanged: (val) => controller.filterDashboardSearch(val),
+                          decoration: InputDecoration(
+                            hintText: 'Cari destinasi atau kuliner...',
+                            prefixIcon: const Icon(Icons.search, color: Colors.grey),
+                            filled: true,
+                            fillColor: Colors.white,
+                            contentPadding: const EdgeInsets.symmetric(vertical: 0),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30),
+                              borderSide: BorderSide.none,
                             ),
-                            Text(
-                              'SURABAYA',
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 10,
-                                letterSpacing: 1.5,
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+                        const Text(
+                          'Jelajahi Surabaya, Rayhan!',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        const Text(
+                          'Temukan tempat menarik dan kuliner khas kota.',
+                          style: TextStyle(color: Colors.white70, fontSize: 13),
+                        ),
+                      ],
+                    ),
+                  ),
+
+                  // Destinasi Unggulan Section
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Destinasi Unggulan',
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                            ),
+                            GestureDetector(
+                              onTap: () => controller.changeTab(1),
+                              child: const Text(
+                                'Lihat Semua',
+                                style: TextStyle(
+                                  color: primaryGreen,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                ),
                               ),
                             ),
                           ],
+                        ),
+                        const SizedBox(height: 12),
+                        controller.destinasiUnggulan != null
+                            ? _buildCardUnggulan(
+                          context: context,
+                          title: controller.destinasiUnggulan!.nama,
+                          subtitle: controller.destinasiUnggulan!.lokasi,
+                          imageUrl: controller.destinasiUnggulan!.imageUrl,
+                          onTap: () => controller.bukaDetailDestinasi(context, controller.destinasiUnggulan),
                         )
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    TextField(
-                      onChanged: (val) => controller.filterDashboardSearch?.call(val),
-                      decoration: InputDecoration(
-                        hintText: 'Cari destinasi atau kuliner...',
-                        prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                        filled: true,
-                        fillColor: Colors.white,
-                        contentPadding: const EdgeInsets.symmetric(vertical: 0),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      'Jelajahi Surabaya, Rayhan!',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    const Text(
-                      'Temukan tempat menarik dan kuliner khas kota.',
-                      style: TextStyle(color: Colors.white70, fontSize: 13),
-                    ),
-                  ],
-                ),
-              ),
-
-              // Destinasi Unggulan Section
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Destinasi Unggulan',
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
-                        GestureDetector(
-                          onTap: () => controller.changeTab?.call(1),
+                            : Container(
+                          padding: const EdgeInsets.all(20),
+                          alignment: Alignment.center,
                           child: const Text(
-                            'Lihat Semua',
-                            style: TextStyle(
-                              color: primaryGreen,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12,
+                            'Destinasi tidak ditemukan',
+                            style: TextStyle(color: Colors.grey),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+
+                        // Kuliner Populer Section
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(
+                              'Kuliner Populer',
+                              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                             ),
+                            GestureDetector(
+                              onTap: () => controller.changeTab(2),
+                              child: const Text(
+                                'Lihat Semua',
+                                style: TextStyle(
+                                  color: primaryGreen,
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                        controller.kulinerPopuler != null
+                            ? _buildCardUnggulan(
+                          context: context,
+                          title: controller.kulinerPopuler!.nama,
+                          subtitle: controller.kulinerPopuler!.lokasi,
+                          imageUrl: controller.kulinerPopuler!.imageUrl,
+                          onTap: () => controller.bukaDetailKuliner(context, controller.kulinerPopuler),
+                        )
+                            : Container(
+                          padding: const EdgeInsets.all(20),
+                          alignment: Alignment.center,
+                          child: const Text(
+                            'Kuliner tidak ditemukan',
+                            style: TextStyle(color: Colors.grey),
                           ),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 12),
-                    _buildCardUnggulan(
-                      context: context,
-                      title: controller.destinasiUnggulan?.nama ?? 'Jalan Tunjungan',
-                      subtitle: controller.destinasiUnggulan?.lokasi ?? 'Surabaya Pusat',
-                      imageUrl: controller.destinasiUnggulan?.imageUrl ?? '',
-                      onTap: () => controller.bukaDetailDestinasi?.call(context, controller.destinasiUnggulan),
-                    ),
-                    const SizedBox(height: 20),
-
-                    // Kuliner Populer Section
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Kuliner Populer',
-                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
-                        GestureDetector(
-                          onTap: () => controller.changeTab?.call(2),
-                          child: const Text(
-                            'Lihat Semua',
-                            style: TextStyle(
-                              color: primaryGreen,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 12),
-                    _buildCardUnggulan(
-                      context: context,
-                      title: controller.kulinerPopuler?.nama ?? 'Rawon Setan',
-                      subtitle: controller.kulinerPopuler?.lokasi ?? 'Surabaya Pusat',
-                      imageUrl: controller.kulinerPopuler?.imageUrl ?? '',
-                      onTap: () => controller.bukaDetailKuliner?.call(context, controller.kulinerPopuler),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 
