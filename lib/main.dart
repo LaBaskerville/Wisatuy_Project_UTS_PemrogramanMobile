@@ -5,8 +5,10 @@ import 'View/dashboard_view.dart';
 import 'View/destinasi_list_view.dart';
 import 'View/kuliner_list_view.dart';
 
-// TODO: Nanti temanmu yang menghandle Controller bisa mengimpor file controller asli di sini
-// import 'Controllers/wisata_controller.dart';
+import 'Models/wisata_model.dart';
+
+// Import Controller Asli
+import 'Controllers/dashboard_controller.dart';
 
 void main() {
   runApp(const WisatuyApp());
@@ -17,8 +19,7 @@ class WisatuyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Ganti 'DummyController()' dengan Controller asli buatan temanmu nantinya
-    final appController = DummyController();
+    final appController = DashboardController();
 
     return MaterialApp(
       title: 'WISATUY',
@@ -37,7 +38,7 @@ class WisatuyApp extends StatelessWidget {
 }
 
 class MainNavigationView extends StatefulWidget {
-  final dynamic controller; // Menerima controller dari tim
+  final dynamic controller;
 
   const MainNavigationView({super.key, required this.controller});
 
@@ -46,13 +47,35 @@ class MainNavigationView extends StatefulWidget {
 }
 
 class _MainNavigationViewState extends State<MainNavigationView> {
+  @override
+  void initState() {
+    super.initState();
+    // Mendengarkan perubahan dari controller (ketika changeTab dipanggil)
+    widget.controller.addListener(_onControllerChanged);
+  }
+
+  @override
+  void dispose() {
+    widget.controller.removeListener(_onControllerChanged);
+    super.dispose();
+  }
+
+  // Fungsi untuk memperbarui tampilan saat tab di-trigger dari dashboard
+  void _onControllerChanged() {
+    if (mounted && widget.controller.currentIndex != _currentIndex) {
+      setState(() {
+        // Mengubah indeks halaman sesuai dengan yang diminta controller
+        _currentIndex = widget.controller.currentIndex;
+      });
+    }
+  }
+
   int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     const primaryGreen = Color(0xFF005E4D);
 
-    // Menghubungkan halaman View dengan Controller yang dikirim dari atas
     final List<Widget> pages = [
       DashboardView(controller: widget.controller),
       DestinasiListView(controller: widget.controller),
@@ -71,8 +94,8 @@ class _MainNavigationViewState extends State<MainNavigationView> {
             setState(() {
               _currentIndex = index;
             });
-            // Jika nanti controller temanmu punya fungsi ganti tab, bisa dipanggil di sini:
-            // widget.controller.changeTab(index);
+            // Memberitahu controller juga jika tab di-tap manual dari bottom bar
+            widget.controller.changeTab?.call(index);
           },
           selectedItemColor: primaryGreen,
           unselectedItemColor: Colors.grey,
@@ -99,48 +122,4 @@ class _MainNavigationViewState extends State<MainNavigationView> {
       ),
     );
   }
-}
-
-/// =====================================================================
-/// DUMMY CONTROLLER SEMENTARA
-/// (Catatan untuk Tim: Hapus class ini jika Controller asli sudah jadi,
-/// lalu arahkan tipe data controller ke class asli buatan tim backend)
-/// =====================================================================
-class DummyController {
-  String selectedDaerahDestinasi = 'Semua Daerah';
-  String selectedKategoriDestinasi = 'Semua Kategori';
-  String selectedDaerahKuliner = 'Semua Daerah';
-  String selectedKategoriKuliner = 'Semua Kategori';
-
-  final List<String> opsiDaerah = const [
-    'Semua Daerah',
-    'Surabaya Pusat',
-    'Surabaya Selatan',
-    'Surabaya Timur',
-    'Surabaya Utara',
-    'Surabaya Barat',
-  ];
-
-  final List<String> opsiKategori = const [
-    'Semua Kategori',
-    'Sejarah',
-    'Alam',
-    'Hiburan',
-    'Makanan Berat',
-    'Jajanan',
-  ];
-
-  final List daftarDestinasi = [];
-  final List daftarKuliner = [];
-
-  void changeTab(int index) {}
-  void filterDashboardSearch(String val) {}
-  void filterDestinasiSearch(String val) {}
-  void filterDestinasiDaerah(String? val) {}
-  void filterDestinasiKategori(String? val) {}
-  void filterKulinerSearch(String val) {}
-  void filterKulinerDaerah(String? val) {}
-  void filterKulinerKategori(String? val) {}
-  void bukaDetailDestinasi(BuildContext context, dynamic item) {}
-  void bukaDetailKuliner(BuildContext context, dynamic item) {}
 }
