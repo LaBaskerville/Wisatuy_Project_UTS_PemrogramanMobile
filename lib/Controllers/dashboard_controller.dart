@@ -65,13 +65,12 @@ class DashboardController extends ChangeNotifier {
       gambar_kuliner: 'Assets/Kuliner/SentraWisataKulinerEmbongSawo.png',
     ),
     const Kuliner(
-      nama_kuliner: 'Rujak Cingur Ahmad Jais',
-      lokasi_kuliner: 'Genteng, Surabaya',
-      deskripsi_kuliner:
-      'Rujak khas Surabaya dengan bumbu petis udang pilihan dan irisan cingur empuk.',
-      kategori_kuliner: 'Makanan Berat',
-      rentang_harga: 'Rp 30.000 - Rp 45.000',
-      gambar_kuliner: 'assets/images/rujak.jpg',
+      nama_kuliner: 'Warung Bu Kris',
+      lokasi_kuliner: 'Jl. Tenggilis / Area Surabaya Pusat',
+      kategori_kuliner: 'Warung',
+      rentang_harga: 'Rp 25.000 - Rp 60.000',
+      deskripsi_kuliner: 'Legenda kuliner penyetan khas Surabaya dengan sambal terasi mangga muda yang khas serta tingkat kepedasan yang bisa disesuaikan.',
+      gambar_kuliner: 'Assets/Kuliner/WarungBuKris.png',
     ),
   ];
 
