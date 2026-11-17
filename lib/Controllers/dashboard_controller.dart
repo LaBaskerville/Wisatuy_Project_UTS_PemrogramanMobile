@@ -42,7 +42,7 @@
         kategori_wisata: 'Taman Kota',
         harga_tiket: 0,
         deskripsi_wisata: 'Berlokasi di tepi Sungai Kalimas dengan fasilitas taman bermain dan area hijau. Sangat sejuk dan nyaman untuk bersantai di tengah kota.',
-        gambar_wisata: 'assets/Wisata/TamanPrestasisurabaya.JPEG',
+        gambar_wisata: 'Assets/Wisata/TamanPrestasiSurabaya.JPEG',
       ),
       const Wisata(
         nama_wisata: 'Hutan Bambu Keputih',
