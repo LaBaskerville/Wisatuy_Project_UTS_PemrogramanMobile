@@ -124,7 +124,7 @@ class DestinasiListView extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
-                          child: Image.network(item.imageUrl, height: 110, width: double.infinity, fit: BoxFit.cover),
+                          child: Image.network(item.gambar_wisata, height: 110, width: double.infinity, fit: BoxFit.cover),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10.0),
@@ -132,13 +132,13 @@ class DestinasiListView extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                item.nama,
+                                item.nama_wisata,
                                 style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
                               const SizedBox(height: 2),
-                              Text(item.lokasi, style: const TextStyle(color: Colors.grey, fontSize: 11)),
+                              Text(item.lokasi_wisata, style: const TextStyle(color: Colors.grey, fontSize: 11)),
                             ],
                           ),
                         )

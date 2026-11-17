@@ -25,7 +25,7 @@ class DestinasiDetailView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
-              destinasi.imageUrl,
+              destinasi.gambar_wisata,
               width: double.infinity,
               height: 220,
               fit: BoxFit.cover,
@@ -36,7 +36,7 @@ class DestinasiDetailView extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    destinasi.nama,
+                    destinasi.nama_wisata,
                     style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
@@ -52,7 +52,7 @@ class DestinasiDetailView extends StatelessWidget {
                         const Icon(Icons.location_on_outlined, size: 16, color: primaryGreen),
                         const SizedBox(width: 4),
                         Text(
-                          destinasi.lokasi,
+                          destinasi.lokasi_wisata,
                           style: const TextStyle(color: primaryGreen, fontWeight: FontWeight.w600, fontSize: 12),
                         ),
                       ],
