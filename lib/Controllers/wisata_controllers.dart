@@ -9,7 +9,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Taman Kota',
     harga_tiket: 0,
     deskripsi_wisata: 'Berlokasi di tepi Sungai Kalimas dengan fasilitas taman bermain dan area hijau. Sangat sejuk dan nyaman untuk bersantai di tengah kota.',
-    gambar_wisata: 'assets/Wisata/TamanPrestasisurabaya.JPEG',
+    gambar_wisata: 'Assets/Wisata/TamanPrestasiSurabaya.JPEG',
   ),
   Wisata(
     nama_wisata: 'Monumen Kapal Selam Surabaya',
@@ -17,7 +17,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Museum / Edukasi',
     harga_tiket: 15000,
     deskripsi_wisata: 'Museum kapal selam bersejarah milik KRI Pasopati 410. Pengalaman masuk ke dalam badan kapal selam memberikan edukasi sejarah yang menarik.',
-    gambar_wisata: 'assets/Wisata/MonumenKapalSelam.jpeg',
+    gambar_wisata: 'Assets/Wisata/MonumenKapalSelam.jpeg',
   ),
   Wisata(
     nama_wisata: 'Wisata Perahu Kalimas',
@@ -25,7 +25,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Rekreasi Air',
     harga_tiket: 10000,
     deskripsi_wisata: 'Menawarkan pengalaman menyusuri sungai kota menggunakan perahu di malam hari. Lampu lampion di sepanjang sungai menciptakan pemandangan malam yang indah.',
-    gambar_wisata: 'assets/Wisata/WisataPerahukalimas.jpg',
+    gambar_wisata: 'Assets/Wisata/WisataPerahukalimas.jpg',
   ),
 
   // --- SURABAYA UTARA ---
@@ -35,7 +35,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Wisata Bahari',
     harga_tiket: 10000,
     deskripsi_wisata: 'Destinasi rooftop di Pelabuhan Tanjung Perak dengan pemandangan aktivitas kapal laut. Spot terbaik untuk menikmati matahari terbenam (sunset).',
-    gambar_wisata: 'assets/Wisata/MuseumSepuluhNovember.jpg', // Disesuaikan dengan file yang tersedia di folder Wisata
+    gambar_wisata: '', // belum ada file gambar khusus untuk North Quay
   ),
   Wisata(
     nama_wisata: 'Kota Tua Surabaya',
@@ -43,7 +43,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Sejarah / Heritage',
     harga_tiket: 0,
     deskripsi_wisata: 'Kawasan bersejarah di sekitar Jembatan Merah dengan arsitektur kolonial tempo dulu. Sangat fotogenik dan cocok untuk wisata jalan kaki.',
-    gambar_wisata: 'assets/Wisata/KotaTuaSurabaya.jpg',
+    gambar_wisata: 'Assets/Wisata/KotaTuaSurabaya.jpg',
   ),
   Wisata(
     nama_wisata: 'Pantai Kenjeran Lama',
@@ -51,7 +51,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Pantai / Pesisir',
     harga_tiket: 10000,
     deskripsi_wisata: 'Wisata pesisir pantai tradisional yang menawarkan pemandangan laut lepas Madura. Pengunjung dapat menyewa perahu nelayan berkeliling laut.',
-    gambar_wisata: 'assets/Wisata/PantaiKenjeranLama.jpg',
+    gambar_wisata: 'Assets/Wisata/PantaiKenjeranLama.jpg',
   ),
 
   // --- SURABAYA TIMUR ---
@@ -61,7 +61,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Ekowisata / Alam',
     harga_tiket: 0,
     deskripsi_wisata: 'Hutan buatan rimbun dengan lorong-lorong pohon bambu ala hutan di Jepang. Sangat estetis untuk berfoto dan rekreasi gratis.',
-    gambar_wisata: 'assets/Wisata/hutanbambukeputih.jpg',
+    gambar_wisata: 'Assets/Wisata/hutanbambukeputih.jpg',
   ),
   Wisata(
     nama_wisata: 'Taman Mundu',
@@ -69,7 +69,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Taman Publik',
     harga_tiket: 0,
     deskripsi_wisata: 'Taman publik di depan Stadion Gelora 10 November Tambaksari dengan suasananya yang asri dan banyak pepohonan rindang.',
-    gambar_wisata: 'assets/Wisata/TamanMundu.JPEG',
+    gambar_wisata: 'Assets/Wisata/TamanMundu.JPEG',
   ),
   Wisata(
     nama_wisata: 'Taman Flora Bratang',
@@ -77,7 +77,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Ruang Publik & Edukasi',
     harga_tiket: 0,
     deskripsi_wisata: 'Taman kota rindang dengan koleksi tanaman langka, taman rusa mini, dan area bermain anak.',
-    gambar_wisata: 'assets/Wisata/TamanFlora.webp',
+    gambar_wisata: 'Assets/Wisata/TamanFlora.webp',
   ),
 
   // --- SURABAYA BARAT ---
@@ -87,7 +87,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Danau / Olahraga',
     harga_tiket: 0,
     deskripsi_wisata: 'Danau buatan di kawasan kampus yang dikelilingi jalur lari dan jajanan rakyat. Suasananya sangat ramai dikunjungi saat akhir pekan pagi.',
-    gambar_wisata: 'assets/Wisata/DanauUnesa.jpg',
+    gambar_wisata: 'Assets/Wisata/DanauUnesa.jpg',
   ),
   Wisata(
     nama_wisata: 'Taman Mozaik',
@@ -95,7 +95,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Taman Tematik',
     harga_tiket: 0,
     deskripsi_wisata: 'Taman tematik modern dengan instalasi bangunan kaca warna-warni yang unik. Arsitekturnya yang artsy sangat bagus untuk latar berfoto.',
-    gambar_wisata: 'assets/Wisata/TamanMozaik.webp',
+    gambar_wisata: 'Assets/Wisata/TamanMozaik.webp',
   ),
   Wisata(
     nama_wisata: 'Jeruk City Park',
@@ -103,7 +103,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Ruang Publik & Alam',
     harga_tiket: 0,
     deskripsi_wisata: 'Ruang terbuka hijau berkonsep agrowisata kebun buah jeruk dengan suasana asri, jalur jalan kaki yang teduh, dan area bersantai keluarga.',
-    gambar_wisata: 'assets/Wisata/JerukCityPark.jpg',
+    gambar_wisata: 'Assets/Wisata/JerukCityPark.jpg',
   ),
 
   // --- SURABAYA SELATAN ---
@@ -113,7 +113,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Taman Kota',
     harga_tiket: 0,
     deskripsi_wisata: 'Taman kota populer di kawasan Gayungan dengan air mancur daun raksasa. Sangat indah dinikmati pada malam hari saat lampu menyala.',
-    gambar_wisata: 'assets/Wisata/TamanPelangi.jpg',
+    gambar_wisata: 'Assets/Wisata/TamanPelangi.jpg',
   ),
   Wisata(
     nama_wisata: 'Kebun Binatang Surabaya / Surabaya Zoo',
@@ -121,7 +121,7 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Kebun Binatang / Edukasi',
     harga_tiket: 15000,
     deskripsi_wisata: 'Destinasi rekreasi satwa ikonik di jantung Surabaya Selatan. Areanya luas dan memiliki banyak koleksi fauna serta edukasi alam yang lengkap.',
-    gambar_wisata: 'assets/Wisata/KebunBinatangSurabaya.jpg',
+    gambar_wisata: 'Assets/Wisata/KebunBinatangSurabaya.jgpg',
   ),
   Wisata(
     nama_wisata: 'Taman Korea Surabaya',
@@ -129,6 +129,6 @@ final List<Wisata> listWisata = [
     kategori_wisata: 'Ruang Publik',
     harga_tiket: 0,
     deskripsi_wisata: 'Taman tematik simbol kerja sama kota kembar Surabaya dan Busan dengan ornamen arsitektur tradisional Korea dan pepohonan rindang.',
-    gambar_wisata: 'assets/Wisata/TamanKorea.jpeg',
+    gambar_wisata: 'Assets/Wisata/TamanKorea.jpeg',
   ),
 ];
