@@ -45,26 +45,24 @@
         gambar_wisata: 'Assets/Wisata/TamanPrestasiSurabaya.JPEG',
       ),
       const Wisata(
-        nama_wisata: 'Hutan Bambu Keputih',
-        lokasi_wisata: 'Sukolilo, Surabaya Timur',
-        deskripsi_wisata:
-        'Taman kota asri dengan deretan pohon bambu rindang di Surabaya Timur.',
-        kategori_wisata: 'Alam',
-        harga_tiket: 0,
-        gambar_wisata: 'assets/images/bambu.jpg', // Sesuaikan nama file asetmu
+        nama_wisata: 'Monumen Kapal Selam Surabaya',
+        lokasi_wisata: 'Jl. Pemuda, Surabaya Pusat',
+        kategori_wisata: 'Museum / Edukasi',
+        harga_tiket: 15000,
+        deskripsi_wisata: 'Museum kapal selam bersejarah milik KRI Pasopati 410. Pengalaman masuk ke dalam badan kapal selam memberikan edukasi sejarah yang menarik.',
+        gambar_wisata: 'Assets/Wisata/MonumenKapalSelam.jpeg',
       ),
     ];
 
     // Data Kuliner Surabaya (Disesuaikan untuk gambar lokal assets)
     final List<Kuliner> _listKuliner = [
       const Kuliner(
-        nama_kuliner: 'Rawon Setan',
-        lokasi_kuliner: 'Surabaya Pusat',
-        deskripsi_kuliner:
-        'Sup daging sapi berkuah hitam kluwek legendaris di Jalan Embong Malang.',
-        kategori_kuliner: 'Makanan Berat',
-        rentang_harga: 'Rp 35.000 - Rp 50.000',
-        gambar_kuliner: 'assets/images/rawon.jpg', // Sesuaikan nama file asetmu
+        nama_kuliner: 'Sentra Wisata Kuliner Embong Sawo',
+        lokasi_kuliner: 'Embong Malang, Surabaya Pusat',
+        kategori_kuliner: 'Street Food',
+        rentang_harga: 'Rp 15.000 - Rp 35.000',
+        deskripsi_kuliner: 'Pusat jajanan dan makanan lokal favorit para pekerja kantoran di pusat kota dengan pilihan kulinernya yang sangat beragam.',
+        gambar_kuliner: 'Assets/Kuliner/SentraWisataKulinerEmbongSawo.png',
       ),
       const Kuliner(
         nama_kuliner: 'Rujak Cingur Ahmad Jais',
