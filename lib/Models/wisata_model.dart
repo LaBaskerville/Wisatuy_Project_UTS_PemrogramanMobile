@@ -22,7 +22,7 @@ class Wisata {
   final String lokasi_wisata;
   final String deskripsi_wisata;
   final String kategori_wisata;
-  final String harga_tiket;
+  final int harga_tiket;
   final String gambar_wisata;
 
   const Wisata ({
