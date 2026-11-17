@@ -179,7 +179,21 @@ class DashboardView extends StatelessWidget {
           ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
             child: imageUrl.isNotEmpty
+                ? (imageUrl.startsWith('http')
                 ? Image.network(imageUrl, height: 160, width: double.infinity, fit: BoxFit.cover)
+                : Image.asset(
+              imageUrl,
+              height: 160,
+              width: double.infinity,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => Container(
+                height: 160,
+                color: Colors.grey[300],
+                child: const Center(
+                  child: Icon(Icons.image_not_supported, color: Colors.grey),
+                ),
+              ),
+            ))
                 : Container(height: 160, color: Colors.grey[300]),
           ),
           Padding(
